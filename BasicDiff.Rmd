@@ -1,0 +1,79 @@
+---
+title: "Simulation"
+author: "NithaDuff"
+date: "7/23/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load_dependencies}
+library(dplyr)
+library(ggplot2)
+```
+
+##  ToothGrowth data analysis
+
+Here we are analysing the data reported for the ToothGrowth of a sample of 60 guinea pigs with varying dosage and 2 alternative supplements. The data looks like the following table.
+
+```{r head}
+data("ToothGrowth")
+head(ToothGrowth)
+summary(ToothGrowth)
+len <- ToothGrowth$len
+```
+
+As seen above the data frame has 3 columns each containing the length(of tooth), supplement group, dosage given.
+There are 2 supplements and 3 variant dosages of each supplement. This is equally divided between 60 guinea pigs.
+```{r inf}
+t.test(len ~ I(relevel(supp,2)), paired = FALSE, data = ToothGrowth)
+```
+
+from the above data, we can analyse the group means, the confidence interval of the entire data and so on.
+
+##  ToothGrowth data Visualisation
+
+```{r tg}
+tooth_mns <- ToothGrowth %>% group_by(supp,dose)  %>% summarise(mean = mean(len)) %>% print()
+
+g <- ggplot(ToothGrowth, aes(x = dose, y = len, colour = dose, group = supp))
+g <- g + geom_point()
+g <- g + geom_line(tooth_mns, mapping = aes(x = dose,y = mean),linetype = 2, size = 1, color = "red") 
+g <- g + facet_grid(. ~ supp) + labs(x = "Dosage", y = "Length" , title = "Comparison in supplement vs dosage")
+print(g)
+```
+
+The plot here shows the comparison between the 2 supplement types with respect to the level of dosage. From the plot we can infer that in either case of supplement the dosage with value 2.0 has a higher mean. Though the difference in means between 1.0 and 2.0 in case of supplement Orange /juice is very less. Hence the increase in dosage has not made much impact. Whereas in case of supplement VC, the dosage levels show a significant improvement in length.
+
+```{r net_violin}
+g <- ggplot(ToothGrowth, aes(x = factor(dose), y = len, fill = factor(dose)))
+g <- g + geom_violin(col = "black", size = 2)
+g <- g + facet_grid(. ~ supp) + labs(x = "Dosage", y = "Length" , title = "Comparison in supplement vs dosage - density")
+print(g)
+```
+
+The violin plots shows that the net effect dosage of VC with value 2.0 has a higher limit. Yet he results of supplement Orange Juice has a comparatively steady outcome. with varying dosages.
+##  Data Analysis
+The dosage comparisions in data w.r.t dosage of 0.5 and 1 in case of either supplements.  
+```{r dos .5-1}
+t.test(len[ToothGrowth$dose==0.5],len[ToothGrowth$dose==1], paired = FALSE, data = ToothGrowth)
+
+```
+Similarly the statistics of dosages 0.5 and 2.  
+```{r dos .5-2}
+t.test(len[ToothGrowth$dose==0.5],len[ToothGrowth$dose==2], paired = FALSE, data = ToothGrowth)
+
+```
+The statistics of dosages 1 and 2.  
+```{r dos 1-2}
+t.test(len[ToothGrowth$dose==1],len[ToothGrowth$dose==2], paired = FALSE, data = ToothGrowth)
+
+```
+
+##  Conclusion
+
+We can conclude that the Vitamin C for Guinea pigs can be more extracted through orange juice than when compared to ascorbic acid even at an average dosage. Whereas, ascorbic acid has to given in comparatively higher dosages in order to obtain right results. 

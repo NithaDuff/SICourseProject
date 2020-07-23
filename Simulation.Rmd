@@ -1,0 +1,64 @@
+---
+title: "BasicDiff"
+author: "NithaDuff"
+date: "7/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load_dependencies}
+library(dplyr)
+library(ggplot2)
+```
+## Central Limit Theorem
+
+n this project you will investigate the exponential distribution in R and compare it with the Central Limit Theorem. The exponential distribution can be simulated in R with rexp(n, lambda) where lambda is the rate parameter. The mean of exponential distribution is 1/lambda and the standard deviation is also 1/lambda. Set lambda = 0.2 for all of the simulations. You will investigate the distribution of averages of 40 exponentials. Note that you will need to do a thousand simulations.
+
+```{r initialize}
+lambda <- 0.2
+mean <- sd <-  1/lambda
+n <- 40
+nosim <- 1000
+x <- rexp(n,lambda)
+```
+
+```{r create_simulations}
+samples <- matrix(sample(x,n*nosim,replace = T),nosim,n)
+means <- apply(samples,1,mean)
+vars <- apply(samples, 1, var)
+```
+The variation between the theoretical mean and the mean obtained from the simulation show a small variation which can be narrowed further on increasing either the sample size or the number or simulations.  
+```{r comparison_mean}
+mu0 <- mean(means)
+print(c(mean,mu0))
+```
+The variance change from the theoretical value and the simulated value are also converging to the expected value.  
+```{r comparison_var}
+print(c(sd^2,mean(vars)))
+```
+##  Distribution of means
+
+```{r distribution_mean}
+hist(means, probability = TRUE)
+curve(dnorm(x, mean=mean(means), sd=sd(means)), col="darkblue", lwd=2, add=TRUE, yaxt="n")
+abline(v = mean, col = "red", lwd = 2)
+abline(v = mean(means),col = "green", lwd = 2)
+```
+
+The above plot is overlayed with a curve that is approximately normal or is almost normal. The means of the two distributions vary by a certain quantity .The green line here shows the theoretical mean whereas the red line is the observed mean.
+
+##  Distribution of variance  
+
+```{r distribution_sd}
+
+hist(vars, probability = TRUE)
+curve(dnorm(x, mean=mean(vars), sd=sd(vars)), col="darkblue", lwd=2, add=TRUE, yaxt="n")
+abline(v = sd^2, col = "red", lwd = 2)
+abline(v = mean(vars),col = "green", lwd = 2)
+```
+
+The green line here shows the theoretical variance and the red line shows the observed variance.  
+Moreover the distributions obtained resembles a normal distribution as shown by the overlayed curve.

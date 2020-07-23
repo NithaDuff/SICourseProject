@@ -1,0 +1,238 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Simulation},
+  pdfauthor={NithaDuff},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Simulation}
+\author{NithaDuff}
+\date{7/23/2020}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.0.2
+\end{verbatim}
+
+\hypertarget{central-limit-theorem}{%
+\subsection{Central Limit Theorem}\label{central-limit-theorem}}
+
+n this project you will investigate the exponential distribution in R
+and compare it with the Central Limit Theorem. The exponential
+distribution can be simulated in R with rexp(n, lambda) where lambda is
+the rate parameter. The mean of exponential distribution is 1/lambda and
+the standard deviation is also 1/lambda. Set lambda = 0.2 for all of the
+simulations. You will investigate the distribution of averages of 40
+exponentials. Note that you will need to do a thousand simulations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda <-}\StringTok{ }\FloatTok{0.2}
+\NormalTok{mean <-}\StringTok{ }\NormalTok{sd <-}\StringTok{  }\DecValTok{1}\OperatorTok{/}\NormalTok{lambda}
+\NormalTok{n <-}\StringTok{ }\DecValTok{40}
+\NormalTok{nosim <-}\StringTok{ }\DecValTok{1000}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{rexp}\NormalTok{(n,lambda)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samples <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{sample}\NormalTok{(x,n}\OperatorTok{*}\NormalTok{nosim,}\DataTypeTok{replace =}\NormalTok{ T),nosim,n)}
+\NormalTok{means <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(samples,}\DecValTok{1}\NormalTok{,mean)}
+\NormalTok{vars <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(samples, }\DecValTok{1}\NormalTok{, var)}
+\end{Highlighting}
+\end{Shaded}
+
+The variation between the theoretical mean and the mean obtained from
+the simulation show a small variation which can be narrowed further on
+increasing either the sample size or the number or simulations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu0 <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(means)}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{c}\NormalTok{(mean,mu0))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.000000 4.626696
+\end{verbatim}
+
+The variance change from the theoretical value and the simulated value
+are also converging to the expected value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{c}\NormalTok{(sd}\OperatorTok{^}\DecValTok{2}\NormalTok{,}\KeywordTok{mean}\NormalTok{(vars)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 25.00000 25.33708
+\end{verbatim}
+
+\hypertarget{distribution-of-means}{%
+\subsection{Distribution of means}\label{distribution-of-means}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(means, }\DataTypeTok{probability =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\KeywordTok{mean}\NormalTok{(means), }\DataTypeTok{sd=}\KeywordTok{sd}\NormalTok{(means)), }\DataTypeTok{col=}\StringTok{"darkblue"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{yaxt=}\StringTok{"n"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ mean, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{mean}\NormalTok{(means),}\DataTypeTok{col =} \StringTok{"green"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Simulation_files/figure-latex/distribution_mean-1.pdf}
+
+The above plot is overlayed with a curve that is approximately normal or
+is almost normal. The means of the two distributions vary by a certain
+quantity .The green line here shows the theoretical mean whereas the red
+line is the observed mean.
+
+\hypertarget{distribution-of-variance}{%
+\subsection{Distribution of variance}\label{distribution-of-variance}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(vars, }\DataTypeTok{probability =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\KeywordTok{mean}\NormalTok{(vars), }\DataTypeTok{sd=}\KeywordTok{sd}\NormalTok{(vars)), }\DataTypeTok{col=}\StringTok{"darkblue"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{yaxt=}\StringTok{"n"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ sd}\OperatorTok{^}\DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{mean}\NormalTok{(vars),}\DataTypeTok{col =} \StringTok{"green"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Simulation_files/figure-latex/distribution_sd-1.pdf}
+
+The green line here shows the theoretical variance and the red line
+shows the observed variance.\\
+Moreover the distributions obtained resembles a normal distribution as
+shown by the overlayed curve.
+
+\end{document}
